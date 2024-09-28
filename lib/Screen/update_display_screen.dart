@@ -24,8 +24,8 @@ class UpdateDisplayScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Name : {$name}"),
-            Text("Name : {$job}"),
-            Text("Name : {$updatedAT}"),
+            Text("Job : {$job}"),
+            Text("Date : {$updatedAT}"),
           ],
         ),
       ),
