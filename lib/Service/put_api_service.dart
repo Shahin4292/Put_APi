@@ -12,7 +12,9 @@ class PutApiService {
     });
     try {
       if (response.statusCode == 200) {
-        UpdateModel model = UpdateModel.fromJson(jsonDecode(response.body));
+        UpdateModel model = UpdateModel.fromJson(
+          jsonDecode(response.body),
+        );
         print(response.body);
         print("Data Update Successfully");
         return model;
@@ -23,8 +25,3 @@ class PutApiService {
     return null;
   }
 }
-
-// {
-// "name": "morpheus",
-// "job": "zion resident"
-// }
