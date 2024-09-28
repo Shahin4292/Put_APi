@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:put_api/Model/update_model.dart';
+import 'package:put_api/Service/put_api_service.dart';
 
 class PutApiScreen extends StatefulWidget {
   const PutApiScreen({super.key});
@@ -8,6 +10,11 @@ class PutApiScreen extends StatefulWidget {
 }
 
 class _PutApiScreenState extends State<PutApiScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController jobController = TextEditingController();
+
+  UpdateModel updateData = UpdateModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +28,7 @@ class _PutApiScreenState extends State<PutApiScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              controller: nameController,
               decoration: InputDecoration(
                 hintText: "Name",
                 border: OutlineInputBorder(
@@ -32,6 +40,7 @@ class _PutApiScreenState extends State<PutApiScreen> {
               height: 15,
             ),
             TextField(
+              controller: jobController,
               decoration: InputDecoration(
                 hintText: "Job",
                 border: OutlineInputBorder(
@@ -50,7 +59,16 @@ class _PutApiScreenState extends State<PutApiScreen> {
                   ),
                   fixedSize: Size(MediaQuery.sizeOf(context).width, 50),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  PutApiService()
+                      .updateData(nameController.text.toString(),
+                          jobController.text.toString())
+                      .then((value) {
+                    setState(() {
+                      updateData = value!;
+                    });
+                  });
+                },
                 child: const Text(
                   "Update",
                   style: TextStyle(
