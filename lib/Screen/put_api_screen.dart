@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:put_api/Model/update_model.dart';
+import 'package:put_api/Screen/update_display_screen.dart';
 import 'package:put_api/Service/put_api_service.dart';
 
 class PutApiScreen extends StatefulWidget {
@@ -66,6 +67,17 @@ class _PutApiScreenState extends State<PutApiScreen> {
                       .then((value) {
                     setState(() {
                       updateData = value!;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdateDisplayScreen(
+                            updateModel: updateData,
+                            name: updateData.name.toString(),
+                            job: updateData.job.toString(),
+                            updatedAT: updateData.updatedAt.toString(),
+                          ),
+                        ),
+                      );
                     });
                   });
                 },
